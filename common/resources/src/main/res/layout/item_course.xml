@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/poster_root"
+    android:layout_width="match_parent"
+    android:layout_height="236dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/rounded_corners_16dp"
+    android:clipToOutline="true"
+    android:elevation="4dp"
+    android:outlineProvider="background"
+    android:padding="0dp"
+    android:translationZ="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_section"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:background="@drawable/rounded_glass_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cover1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/bookmark_button"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_corners_20dp"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:src="@drawable/bookmark_selector"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info_container"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/info1"
+                android:layout_width="46dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_glass_info"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="6dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/star_icon"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/icon_star" />
+
+                <TextView
+                    android:id="@+id/rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:letterSpacing="0.04"
+                    android:lineHeight="14sp"
+                    android:text="4.9"
+                    android:textColor="#F2F2F3"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/info2"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/rounded_glass_info"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="6dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintStart_toEndOf="@id/info1"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:letterSpacing="0.033"
+                    android:lineHeight="14sp"
+                    android:text="22 Мая 2024"
+                    android:textColor="#F2F2F3"
+                    android:textSize="11sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_section"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="296dp"
+                android:layout_height="22dp"
+                android:fontFamily="@font/roboto"
+                android:letterSpacing="0.15"
+                android:lineHeight="15sp"
+                android:text="Java-разработчик с нуля"
+                android:textColor="#F2F2F3"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="296dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="5dp"
+                android:alpha="0.7"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:letterSpacing="0.04"
+                android:lineHeight="16sp"
+                android:maxLines="2"
+                android:text="Освойте backend-разработку и программирование на Java, фреймворки Spring и Maven, работу с базами данных и API. Создайте свой собственный проект, собрав портфолио и став востребованным специалистом для любой IT компании."
+                android:textColor="#F2F2F3"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_title" />
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
+                android:letterSpacing="0.15"
+                android:lineHeight="18sp"
+                android:text="999 ₽"
+                android:textColor="#F2F2F3"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_description" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="15dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/icon_arrow_right"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_vertical"
+                android:text="@string/more_button"
+                android:textColor="#12B956"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

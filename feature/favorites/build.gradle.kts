@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.serialization)
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.example.testEffectiveMobile.shared.user.auth"
+    namespace = "com.example.testeffectivemobile.feature.favorites"
     compileSdk = 35
 
     defaultConfig {
@@ -24,6 +24,10 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,26 +38,24 @@ android {
 }
 
 dependencies {
-
-    // Работа с сетью
-    implementation(libs.retrofit);
-    implementation(libs.retrofit2.kotlinx.serialization.converter);
-    implementation(libs.logging.interceptor)
-
-// Сериализация JSON
-    implementation(libs.kotlinx.serialization.json);
+    implementation(project(":shared:courses"))
+    implementation(project(":common:resources"))
 
     // Асинхронное программирование
     implementation(libs.kotlinx.coroutines.android)
 
     //DI
     implementation(libs.koin.android)
-   // implementation(libs.koin.androidx.viewmodel)
 
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(project(":util:validation"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

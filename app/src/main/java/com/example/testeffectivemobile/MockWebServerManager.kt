@@ -20,24 +20,26 @@ class MockWebServerManager(private val context: Context, private val port: Int) 
         private val responses = mutableMapOf<String, Queue<Response>>()
 
         override fun dispatch(request: RecordedRequest): MockResponse {
-            if (request.path == "/api/v1/auth/login" && request.method == "POST") {
+            if (request.path == "/auth/login" && request.method == "POST") {
                 val body = request.body.readUtf8()
                 val login = body.substringAfter("\"email\":\"").substringBefore("\"")
                 val password = body.substringAfter("\"password\":\"").substringBefore("\"")
 
 
-                val responseFile = when {
+                val (responseFile, responseCode) = when {
                     login == "user1@gmail.com" && password == "1234" -> {
-                        "authUser1.json"
+                        "authUser1.json" to HttpURLConnection.HTTP_OK
                     }
-                    else -> "error.json"
+                    else -> {
+                        "error.json" to HttpURLConnection.HTTP_UNAUTHORIZED
+                    }
                 }
 
                 val responseBody = getAssetFileContent(responseFile, "application/json")
 
                 return MockResponse().apply {
-                    setResponseCode(HttpURLConnection.HTTP_OK)
-
+                    //setResponseCode(HttpURLConnection.HTTP_OK)
+                    setResponseCode(responseCode)
                     when (responseBody) {
                         is String -> setBody(responseBody)
                         is ByteArray -> {

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.serialization)
+
 }
 
 android {
@@ -34,18 +35,25 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
+
 
 dependencies {
     implementation(project(":shared:user:auth"))
     implementation(project(":shared:courses"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:courses"))
+    implementation(project(":feature:favorites"))
+    implementation(project(":util:validation"))
+    implementation(project(":common:resources"))
 
     //MockWebServer
-    implementation (libs.okhttp)
+    implementation(libs.okhttp)
     implementation(libs.mockwebserver.v4110)
     implementation(libs.androidx.monitor)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.mockwebserver)
 
 // Работа с сетью
@@ -53,7 +61,7 @@ dependencies {
     implementation(libs.retrofit2.kotlinx.serialization.converter);
     implementation(libs.logging.interceptor)
 
-// Сериализация JSON
+    // Сериализация JSON
     implementation(libs.kotlinx.serialization.json);
 
     // Асинхронное программирование
@@ -61,7 +69,7 @@ dependencies {
 
     //DI
     implementation(libs.koin.android)
-    implementation(libs.koin.androidx.viewmodel)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

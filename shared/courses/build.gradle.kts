@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    kotlin("kapt")
 }
 
 android {
     namespace = "com.example.testEffectiveMobile.shared.courses"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -33,10 +35,28 @@ android {
 }
 
 dependencies {
+// Работа с сетью
+    implementation(libs.retrofit);
+    implementation(libs.retrofit2.kotlinx.serialization.converter);
+    implementation(libs.logging.interceptor)
+
+// Сериализация JSON
+    implementation(libs.kotlinx.serialization.json);
+
+    // Асинхронное программирование
+    implementation(libs.kotlinx.coroutines.android)
+
+    //DI
+    implementation(libs.koin.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

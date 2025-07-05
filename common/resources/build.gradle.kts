@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
-    namespace = "com.example.testEffectiveMobile.shared.user.auth"
+    namespace = "com.example.testEffectiveMobile.common.resources"
     compileSdk = 35
 
     defaultConfig {
@@ -13,6 +12,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -34,22 +36,6 @@ android {
 }
 
 dependencies {
-
-    // Работа с сетью
-    implementation(libs.retrofit);
-    implementation(libs.retrofit2.kotlinx.serialization.converter);
-    implementation(libs.logging.interceptor)
-
-// Сериализация JSON
-    implementation(libs.kotlinx.serialization.json);
-
-    // Асинхронное программирование
-    implementation(libs.kotlinx.coroutines.android)
-
-    //DI
-    implementation(libs.koin.android)
-   // implementation(libs.koin.androidx.viewmodel)
-
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

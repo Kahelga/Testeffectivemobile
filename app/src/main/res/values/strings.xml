@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TestEffectiveMobile</string>
+    <string name="title_ic_home">Главная</string>
+    <string name="title_ic_favorite">Избранное</string>
+    <string name="title_ic_account">Аккаунт</string>
+    <string name="title_profile">Профиль</string>
 </resources>

@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/icon_home"
+        android:title="@string/title_ic_home" />
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/icon_favorite"
+        android:title="@string/title_ic_favorite" />
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/icon_account"
+        android:title="@string/title_ic_account" />
+</menu>

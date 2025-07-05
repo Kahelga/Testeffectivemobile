@@ -1,0 +1,9 @@
+<resources>
+    <string name="login_title">Вход</string>
+    <string name="email_label">Email</string>
+    <string name="email_example">example@gmail.com</string>
+    <string name="pass_label">Пароль</string>
+    <string name="pass_example">Введите пароль</string>
+    <string name="vk_button_description">Войти через ВКонтакте</string>
+    <string name="ok_button_description">Войти через Одноклассники</string>
+</resources>

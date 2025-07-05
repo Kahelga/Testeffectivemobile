@@ -25,46 +25,72 @@ class HomeViewModel(
         102 to "cover3"
     )
 
-    fun loadCourses() {
-        viewModelScope.launch {
-            _state.value = HomeState.Loading
-            try {
-                val coursesFromNetwork = getCoursesUseCase()
+   fun loadCourses() {
+       viewModelScope.launch {
+           _state.value = HomeState.Loading
+           try {
+               val coursesFromNetwork = getCoursesUseCase()
 
-                val favoritesFromDb = favoriteCourseRepository.getFavorites()
+               val favoritesFromDb = favoriteCourseRepository.getFavorites()
+               val favoriteIdsFromDb = favoritesFromDb.map { it.id }.toSet()
 
-                val favoriteIdsFromDb = favoritesFromDb.map { it.id }.toSet()
-                coursesFromNetwork.courses.filter { it.hasLike }
-                    .filter { !favoriteIdsFromDb.contains(it.id) }
-                    .forEach { course ->
-                        val favorite = FavoriteCourse(
-                            id = course.id,
-                            title = course.title,
-                            text = course.text,
-                            price = course.price,
-                            rate = course.rate,
-                            startDate = course.startDate,
-                            hasLike = true,
-                            publishDate = course.publishDate,
-                            imageUrl = imageResNameMap[course.id] ?: "cover1"
-                        )
-                        favoriteCourseRepository.addFavorite(favorite)
-                    }
-                //чтобы соответсвовало ответу от сервера при переходе на список курсов,тк нет реального сервера с запросом на обновление
-                coursesFromNetwork.courses
-                    .filter { !it.hasLike }
-                    .filter { favoriteIdsFromDb.contains(it.id) }
-                    .forEach { course ->
-                        favoriteCourseRepository.removeFavorite(course.id)
-                    }
+               //чтобы соответсвовало бд с избранными
+               val updatedCourses = coursesFromNetwork.courses.map { course ->
+                   course.copy(hasLike = favoriteIdsFromDb.contains(course.id))
+               }
 
-                _state.value = HomeState.Content(coursesFromNetwork)
-            } catch (ce: CancellationException) {
-                throw ce
-            } catch (ex: Exception) {
-                _state.value = HomeState.Failure(ex.localizedMessage.orEmpty())
-            }
-        }
-    }
+               val updatedCoursesFromNetwork = coursesFromNetwork.copy(courses = updatedCourses)
+
+               _state.value = HomeState.Content(updatedCoursesFromNetwork)
+           } catch (ce: CancellationException) {
+               throw ce
+           } catch (ex: Exception) {
+               _state.value = HomeState.Failure(ex.localizedMessage.orEmpty())
+           }
+       }
+   }
+//наоборот удаляет из бд данные,которые не соответсвую ответу от сервера
+    /* fun loadCourses() {
+         viewModelScope.launch {
+             _state.value = HomeState.Loading
+             try {
+                 val coursesFromNetwork = getCoursesUseCase()
+
+                 val favoritesFromDb = favoriteCourseRepository.getFavorites()
+
+                 val favoriteIdsFromDb = favoritesFromDb.map { it.id }.toSet()
+                 coursesFromNetwork.courses.filter { it.hasLike }
+                     .filter { !favoriteIdsFromDb.contains(it.id) }
+                     .forEach { course ->
+                         val favorite = FavoriteCourse(
+                             id = course.id,
+                             title = course.title,
+                             text = course.text,
+                             price = course.price,
+                             rate = course.rate,
+                             startDate = course.startDate,
+                             hasLike = true,
+                             publishDate = course.publishDate,
+                             imageUrl = imageResNameMap[course.id] ?: "cover1"
+                         )
+                         favoriteCourseRepository.addFavorite(favorite)
+                     }
+
+                 coursesFromNetwork.courses
+                     .filter { !it.hasLike }
+                     .filter { favoriteIdsFromDb.contains(it.id) }
+                     .forEach { course ->
+                         favoriteCourseRepository.removeFavorite(course.id)
+                     }
+
+                 _state.value = HomeState.Content(coursesFromNetwork)
+             } catch (ce: CancellationException) {
+                 throw ce
+             } catch (ex: Exception) {
+                 _state.value = HomeState.Failure(ex.localizedMessage.orEmpty())
+             }
+         }
+     }*/
+
 
 }

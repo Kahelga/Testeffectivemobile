@@ -156,7 +156,7 @@
             <TextView
                 android:id="@+id/text_description"
                 android:layout_width="296dp"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:alpha="0.7"
                 android:ellipsize="end"
@@ -188,7 +188,7 @@
                 android:id="@+id/button_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
                 android:drawableEnd="@drawable/icon_arrow_right"
